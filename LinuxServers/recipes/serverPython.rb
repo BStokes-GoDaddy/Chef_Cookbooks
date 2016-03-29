@@ -7,9 +7,6 @@
 include_recipe "LinuxServers::serverAws"
 include_recipe "LinuxServers::serviceUwsgi"
 
-include_recipe 'apt::default'
-include_recipe 'firewall::default'
-include_recipe 'auto-patch::default'
 include_recipe 'memcached::default'
 include_recipe 'python::default'
 include_recipe 'build-essential::default'

@@ -6,9 +6,7 @@
 
 include_recipe "LinuxServers::serverAws"
 
-include_recipe 'apt::default'
 include_recipe 'firewall::default'
-include_recipe 'auto-patch::default'
 include_recipe 'memcached::default'
 
 include_recipe 'LinuxServers::pkgUnzip'
