@@ -1,3 +1,3 @@
 # LinuxServers
 
-This is the cookbook for *nix specif recipes for building servers and desktop instances
+This is the cookbook for *nix specific recipes for building server instances
