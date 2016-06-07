@@ -4,15 +4,20 @@
 #
 # Copyright (c) 2016 Bill Stokes, All Rights Reserved.
 # uWSGI installation
-execute 'uwsgi-installation' do
-  command     'sudo pip install -U uwsgi && sudo pip install -U uwsgitop'
-  subscribes  :run, 'uwsgi', :immediate
-  notifies    :run, 'execute[uwsgi-bin-alternative]', :immediate
-  action      :nothing
+include_recipe 'uwsgi::default'
+include_recipe 'memcached::default'
+
+
+# uWSGI supporting packages
+%w{uwsgi uwsgi-plugin-python uwsgi-plugin-alarm-curl}.each do |pkg|
+package pkg do
+  action :install
+  end
 end
 
-# use the uwsgi installed by pip
-execute 'uwsgi-bin-alternative' do
-  command 'rm /etc/alternatives/uwsgi && ln -s /usr/local/bin/uwsgi /etc/alternatives/'
-  action  :nothing
+
+execute 'uwsgitop-installation' do
+  command     'pip install -U --force-reinstall uwsgitop'
+  user        'root'
+  action      :run
 end

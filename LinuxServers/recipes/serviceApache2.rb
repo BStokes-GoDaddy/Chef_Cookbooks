@@ -15,14 +15,14 @@ service 'apache2' do
 end
 
 # Create the document root directory.
-directory node['LinuxServers']['pkgApache2']['document_root'] do
+directory node['LinuxServers']['serviceApache2']['document_root'] do
   recursive true
 end
 
 # Write the home page.
-file "#{node['LinuxServers']['pkgApache2']['document_root']}/index.html" do
+file "#{node['LinuxServers']['serviceApache2']['document_root']}/index.html" do
   content '<html>Site is feeling bland at the moment...</html>'
   mode '0644'
-  owner node['LinuxServers']['pkgApache2']['user']
-  group node['LinuxServers']['pkgApache2']['group']
+  owner node['LinuxServers']['serviceApache2']['user']
+  group node['LinuxServers']['serviceApache2']['group']
 end

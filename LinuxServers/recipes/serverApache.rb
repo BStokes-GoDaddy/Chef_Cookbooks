@@ -9,7 +9,6 @@ include_recipe "LinuxServers::serverAws"
 include_recipe 'firewall::default'
 include_recipe 'memcached::default'
 
-include_recipe 'LinuxServers::pkgUnzip'
 include_recipe 'LinuxServers::userWebAdmin'
 include_recipe 'LinuxServers::serviceApache2'
 
@@ -19,4 +18,16 @@ include_recipe 'LinuxServers::serviceApache2'
 package pkg do
   action :install
   end
+end
+
+firewall_rule 'http/https' do
+  position 1
+  protocol :tcp
+  port     [80, 443]
+  command   :allow
+end
+
+firewall_rule 'ssh' do
+  port     22
+  command  :allow
 end
